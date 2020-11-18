@@ -178,18 +178,6 @@ sudo systemctl restart httpd
       # enter pasword,user name etc... 
 
 
-#connect to your wordpress website in different browser with EC2 DNS and write 2 comments in the yorum subsection
-
-#connect to the database
-mysql -u admin -p
-
-#Show databases and Select the database "clarusway"
-SHOW DATABASES;
-USE clarusway;
-select * from wp_comments;  # you can see the written two comments in here
-exit
-
-
 # 34. Connect to the RDS instance to create "clarusway" database with HOST
 mysql -u admin -h [your-own-RDS-endpoint] -p
 
@@ -256,7 +244,11 @@ cd /var/www/html/
 sudo vi wp-config.php
 click i (insert)
 
-    #define( 'DB_HOST', '[RDS-end-point]' );
+     #define( 'DB_NAME', 'clarusway' );
+
+     #define( 'DB_USER', 'admin' );
+
+     #define( 'DB_PASSWORD', 'Clarusway_1' );
 
 esc+:wq
 sudo systemctl restart httpd

@@ -29,7 +29,7 @@ PS: For MAC, "Microsoft Remote Desktop" program should be installed on the compu
 
 Security Group    : 
     Sec.Group Name : Private Sec.group
-    Rules          : All Traffic ---> Public Sec.Grp
+    Rules          : All Traffic ---> 0.0.0.0.0/0
 
 ### C. Since the private EC2 needs internet connectivity to set user data, we use NAT Gateway
 
@@ -144,6 +144,11 @@ WARNING!!! ---> Please do not terminate "NAT Gateway" and "Private WEB EC2" for 
 
 # STEP 1: Prep
 
+Security Group    : 
+    Sec.Group Name : Private Sec.group
+    Rules          : All Traffic ---> Public Sec.Grb
+
+
 ### A. Create S3 Bucket 
 
 - Go to the S3 service on AWS console
@@ -172,7 +177,7 @@ Security Group  :
     Sec.Group Name : Public Sec.Group
     Rules          : TCP --- > 22 ---> Anywhere
                      All ICMP IPv4  ---> Anywhere
-                     
+                     HTTp--------> Anywhere
 Tag             :
     Key         : Name
     Value       : Public EC2 (Bastion Host)

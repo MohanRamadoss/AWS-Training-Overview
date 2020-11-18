@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >
+  Cloudformation Template for Converting Numbers to Roman Letters via using Python files. 
+  This template deploys a dynamic website on Amazon Linux 2 EC2 Instance with custom security group allowing HTTP connections on port 80.
+  The website is downloaded from Github repository, then deployed as Flask.
+Resources:
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP for Flask and SSH for Terminal
+      SecurityGroupIngress:
+      - IpProtocol: tcp 
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp 
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0 
+  WebServerHost:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-09d95fab7fff3776c
+      InstanceType: t2.micro 
+      KeyName: newram
+      SecurityGroupIds:
+        - !Ref WebServerSecurityGroup
+      Tags:
+        - 
+          Key: Name
+          Value: !Sub Web Server of ${AWS::StackName} Stack
+      UserData:
+        Fn::Base64:
+          !Sub |
+            #! /bin/bash 
+            yum update -y
+            yum install -y python3
+            pip3 install flask
+            mkdir templates
+            cd templates
+            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/templates/index.html
+            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/templates/result.html
+            cd ..
+            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/Project_001_.png
+            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/app.py
+            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/project-001-snapshot.png
+            python3 app.py
+            
+Outputs:
+  WebsiteURL:
+    Value: !Sub 
+      - http://${PublicAddress}
+      - PublicAddress: !GetAtt WebServerHost.PublicDnsName
+    Description: Roman Letters Converter Web Site URL  
+ 

@@ -1,0 +1,84 @@
+    1  echo $SHELL
+    2  printenv
+    3  cat /etc/passwd
+    4  WHİCH BASH
+    5  which bash
+    6  echo $PS1
+    7  exportPS1
+    8  export PS1="\t \j "
+    9  sleep 5
+   10  sleep 5 &
+   11  export PS1="Time: \t \n Processes: \j "
+   12  history
+   13  export PS1="{ \! } ==> "
+   14  ls
+   15  history
+   16  export PS1="[\033[1;35m]\u@\h[\033[0m] "
+   17  export PS1="$PS1\a "
+   18  s
+   19  ls
+   20  export PS1="$PS1 "
+   21  s
+   22  export PS1="$PS1"
+   23  export PS1=" \t \j "
+   24  s
+   25  touch file.txt
+   26  ls
+   27  rm file.txt 
+   28  ls
+   29  touch file.sh
+   30  ls
+   31  vi file.sh 
+   32  file.sh
+   33  ./file.sh
+   34  sudo ./file.sh
+   35  echo $PATH
+   36  pwd
+   37  ./
+   38  ./file.sh
+   39  ls -l
+   40  chmod +x file.sh 
+   41  ./file.sh 
+   42  file.sh
+   43  bash file.sh 
+   44  vi file.sh 
+   45  bash file.sh 
+   46  vi new.sh
+   47  ls
+   48  chmod +x new.sh 
+   49  ./new.sh 
+   50  ls -l
+   51  ./new.sh 
+   52  ./new.sh file.sh guile.sh
+   53  env
+   54  #
+   55  @
+   56  vi my-first-script.sh
+   57  chmod +x my-first-script.sh 
+   58  ./my-first-script.sh 
+   59  sampledir=/etc
+   60  ls $sampledir 
+   61  myvar='Hello World'
+   62  echo $myvar 
+   63  nevwar="More $myvar"
+   64  echo nevwar
+   65  echo $nevwar ,
+   66  anothervar='more $myvar'
+   67  echo $myvar 
+   68  echo $nevwar 
+   69  echo $anothervar 
+   70  vi calculate.sh
+   71  chmod +x calculate.sh 
+   72  ./calculate.sh 
+   73  vi calculate.sh 
+   74  ./calculate.sh 
+   75  vi aws.sh
+   76  cat calculate.sh 
+   77  time cat
+   78  termdown 10
+   79  sudo pip install termdown
+   80  sudo pip3 install termdown
+   81  history
+   82  echo $history > historyfile.txt
+   83  cat historyfile.txt 
+   84  history > historyfile.txt
